@@ -5,14 +5,8 @@
 @inject SweetAlertService sweetAlertService
 
 
-@if (Tickets is null)
-{
-    <div class="spinner" />
-}
-else
-{
-    <GenericList MyList="Tickets">
-        <Body>
+
+   
             <div class="card">
                 <div class="card-header">
                     <span>
@@ -45,43 +39,12 @@ else
                                 
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach (var ticket in Tickets)
-                            {
-                                <tr>
-                                    <td>
-                                        @ticket.Name
-                                    </td>
-                                    <td>
-                                        @ticket.Type_purchse
-                                    </td>
-                                    <td>
-                                        @ticket.Date
-                                    </td>
-                                    <td>
-                                        @($"{ticket.Price:C2}")
-                                    </td>
-                                   
-                                    <td>
-                                        @ticket.CustomersNumber
-                                    </td>
-                                    <td>
-                                        @ticket.GoalsNumber
-                                    </td>
-                               
-                                    <td>
-                                        <a href="/tickets/edit/@ticket.Id" class="btn btn-warning"><i class="oi oi-pencil" /> Editar</a>
-                                        <button class="btn btn-danger" @onclick=@(() => Delete(ticket.Id))><i class="oi oi-trash" /> Borrar</button>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
+                       
                     </table>
                 </div>
             </div>
-        </Body>
-    </GenericList>
-}
+       
+
 
 @code {
     private int currentPage = 1;
