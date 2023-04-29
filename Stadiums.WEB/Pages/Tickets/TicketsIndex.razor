@@ -7,36 +7,35 @@
 
 <h3>Boleto</h3>
 
-@if(Tickets is null)
-{
-    <p>Cargando...</p>
-}else
-{
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Boleto</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var ticket in Tickets!)
-            {
+<GenericList MyList="Tickets">
+    <Body>
+
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td>
-                        <a class="btn btn-warning">Editar</a>
-                        <button class="btn btn-danger">Borrar</button>
-                    </td>
-                    <td>
-                        @ticket.Name
-                    </td>
+                    <th></th>
+                    <th>Boleto</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var ticket in Tickets!)
+                {
+                    <tr>
+                        <td>
+                            <a class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger">Borrar</button>
+                        </td>
+                        <td>
+                            @ticket.Name
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </Body>
 
-}
 
+</GenericList>
 
 
 
@@ -47,5 +46,5 @@
     {
         var responseHttp = await repository.Get<List<Ticket>>("/api/tickets");
         Tickets = responseHttp.Response;
-    }          
+    }
 }

@@ -22,9 +22,44 @@ namespace Stadiums.API.Controllers
         {
             return Ok(await _context.Tickets.ToListAsync());
         }
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult> GetAsync(int id)
+        {
+            var country = await _context.Tickets.FirstOrDefaultAsync(x => x.Id == id);
+            if (country is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(country);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> PutAsync(Ticket ticket)
+        {
+            _context.Update(ticket);
+            await _context.SaveChangesAsync();
+            return Ok(ticket);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> DeleteAsync(int id)
+        {
+            var ticket = await _context.Tickets.FirstOrDefaultAsync(x => x.Id == id);
+            
+
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+            _context.Remove(ticket);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
 
         [HttpPost]
-        public async Task<ActionResult> Post(Ticket ticket)
+        public async Task<ActionResult> PostAsync(Ticket ticket)
         {
             _context.Add(ticket);
             await _context.SaveChangesAsync();
