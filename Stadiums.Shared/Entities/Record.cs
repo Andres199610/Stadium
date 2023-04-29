@@ -23,5 +23,11 @@ namespace Stadiums.Shared.Entities
         [Display(Name = "Uso")]
         public string Use { get; set; }=null!;
 
+        public ICollection<Goal>? Goals { get; set; }
+
+        [Display(Name = "Porteria")]
+        public int GoalsNumber => Goals == null ? 0 : Goals.Count;
+
+
     }
 }

@@ -26,5 +26,9 @@ namespace Stadiums.Shared.Entities
         [Display(Name = "Telefono")]
         public int phone { get; set; }
 
+        public Ticket Ticket { get; set; } = null!;
+
+        public int TicketId { get; set; }
+
     }
 }

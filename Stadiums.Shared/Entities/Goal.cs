@@ -19,6 +19,13 @@ namespace Stadiums.Shared.Entities
 
         public int Telefono { get; set; }
 
+        public Record Record { get; set; } = null!;
+
+        public int RecordId { get; set; }
+
+        public Ticket Ticket { get; set; } = null!;
+
+        public int TicketId { get; set; }
 
     }
 }

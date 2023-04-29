@@ -13,6 +13,11 @@ namespace Stadiums.Shared.Entities
     {
         public int Id { get; set; }
 
+        [Display(Name = "Nombre")]
+        [MaxLength(50, ErrorMessage = "El campo {0} debe tener máximo {1} caractéres.")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        public string Name { get; set; } = null!;
+
         [Display(Name = "Tipo de compra")]
         [MaxLength(50, ErrorMessage = "El campo {0} debe tener máximo {1} caractéres.")]
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]
@@ -26,6 +31,17 @@ namespace Stadiums.Shared.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]
 
         public decimal Price { get; set; }
+
+        public ICollection<Goal>? Goals { get; set; }
+
+        [Display(Name = "Porteria")]
+        public int GoalsNumber => Goals == null ? 0 : Goals.Count;
+
+        public ICollection<Customer>? Customers { get; set; }
+
+        [Display(Name = "Clientes")]
+        public int CustomersNumber => Customers == null ? 0 : Customers.Count;
+
 
     }
 }
