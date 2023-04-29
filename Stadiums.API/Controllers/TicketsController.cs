@@ -18,7 +18,7 @@ namespace Stadiums.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Get()
+        public async Task<IActionResult> GetAsync()
         {
             return Ok(await _context.Tickets.ToListAsync());
         }

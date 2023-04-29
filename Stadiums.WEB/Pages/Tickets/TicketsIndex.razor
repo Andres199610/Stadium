@@ -1,0 +1,51 @@
+﻿@page "/tickets"
+
+@inject IRepository repository
+
+
+
+
+<h3>Boleto</h3>
+
+@if(Tickets is null)
+{
+    <p>Cargando...</p>
+}else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Boleto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ticket in Tickets!)
+            {
+                <tr>
+                    <td>
+                        <a class="btn btn-warning">Editar</a>
+                        <button class="btn btn-danger">Borrar</button>
+                    </td>
+                    <td>
+                        @ticket.Name
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+
+
+
+
+@code {
+    public List<Ticket>? Tickets { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var responseHttp = await repository.Get<List<Ticket>>("/api/tickets");
+        Tickets = responseHttp.Response;
+    }          
+}
